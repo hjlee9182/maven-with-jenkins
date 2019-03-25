@@ -36,7 +36,7 @@ public class SampleController {
 //        System.out.println("after calculate");
 //        System.out.println("price: " + calcMoney);
         int button;
-       // System.out.println("사용자가 가지고 있는 액수 : " + userMoney);
+      
         logger.log(Level.INFO,"사용자가 가지고있는액수");
 
         while (!end) {
