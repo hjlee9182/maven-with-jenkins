@@ -59,7 +59,9 @@ public class SampleController {
             }
             else if (button == 0) {
                 end = true;
-                logger.info(String.format("구매금액 : %d 잔액 :%d",totalPrice, userMoney));
+
+                logger.log(Level.SEVERE, "구매금액 : {0}", totalPrice);
+                logger.log(Level.SEVERE, "잔액 :{0}",userMoney);
                 logger.info("이용해 주셔서 감사합니다.");
 
 
