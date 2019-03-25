@@ -9,6 +9,7 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+
 @Controller
 @EnableAutoConfiguration
 public class SampleController {
@@ -58,12 +59,12 @@ public class SampleController {
             }
              else if (button == 0) {
                 end = true;
-                
-                System.out.println("구매금액 : " + totalPrice + " 잔액 : " + userMoney);
-                System.out.println("이용해주셔서 감사합니다.");
-            } else {
 
-                System.out.println("올바른 명령어를 입력하세요");
+               logger.info("액수가 부족합니다.");
+               logger.info("구매금액 : " + totalPrice + " 잔액 : " + userMoney);
+            } else {
+                logger.log(Level.INFO, "올바른 명령어를 입력하세요");
+
             }
 
 
