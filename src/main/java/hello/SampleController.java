@@ -67,6 +67,7 @@ public class SampleController {
             else {
                 System.out.println("안녕하세요");
                 System.out.println("슬랙테스티입니다.");
+                System.out.println("슬랙테스티입니다.");
                 System.out.println("올바른 명령어를 입력하세요");
             }
 
