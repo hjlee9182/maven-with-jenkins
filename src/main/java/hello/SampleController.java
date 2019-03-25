@@ -6,10 +6,13 @@ import org.springframework.boot.autoconfigure.*;
 import org.springframework.stereotype.*;
 import org.springframework.web.bind.annotation.*;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @Controller
 @EnableAutoConfiguration
 public class SampleController {
+
     @Value("${environment.message}")
     private String message;
 
@@ -21,7 +24,7 @@ public class SampleController {
 
     public static void main(String[] args) throws Exception {
         SpringApplication.run(SampleController.class, args);
-
+        Logger logger = Logger.getLogger(SampleController.class.getName());
         Scanner in = new Scanner(System.in);
         boolean end = false;
 
@@ -33,7 +36,8 @@ public class SampleController {
 //        System.out.println("after calculate");
 //        System.out.println("price: " + calcMoney);
         int button;
-        System.out.println("사용자가 가지고 있는 액수 : " + userMoney);
+       // System.out.println("사용자가 가지고 있는 액수 : " + userMoney);
+        logger.log(Level.INFO,"사용자가 가지고있는액수");
 
         while (!end) {
             printMenu();
@@ -65,6 +69,7 @@ public class SampleController {
                 System.out.println("이용해주셔서 감사합니다.");
             }
             else {
+
                 System.out.println("올바른 명령어를 입력하세요");
             }
 
