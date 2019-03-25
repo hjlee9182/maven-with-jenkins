@@ -36,7 +36,7 @@ public class SampleController {
 //        System.out.println("after calculate");
 //        System.out.println("price: " + calcMoney);
         int button;
-      
+
         logger.log(Level.INFO,"사용자가 가지고있는액수");
 
         while (!end) {
@@ -44,7 +44,8 @@ public class SampleController {
             button = in.nextInt();
             printMenu();
             if (userMoney < 0) {
-                System.out.println("액수가 부족합니다.");
+
+                logger.log(Level.INFO,"액수가 부족합니다.");
                 end = true;
             }
             if (button == 1) {
@@ -65,12 +66,14 @@ public class SampleController {
             }
             else if (button == 0) {
                 end = true;
-                System.out.println("구매금액 : " + totalPrice + " 잔액 : " + userMoney);
-                System.out.println("이용해주셔서 감사합니다.");
+
+                logger.log(Level.INFO,"구매금액 : " + totalPrice + " 잔액 : " + userMoney);
+
+                logger.log(Level.INFO,"이용해주셔서 감사합니다.");
             }
             else {
+                logger.log(Level.INFO,"올바른 명령어를 입력하세요");
 
-                System.out.println("올바른 명령어를 입력하세요");
             }
 
         }
@@ -90,13 +93,17 @@ public class SampleController {
     }
 
     private static void printMenu(){
-        System.out.println("---------------------------");
-        System.out.println("1.콜라 1000");
-        System.out.println("2.환타 1500");
-        System.out.println("3.사이다 1300");
-        System.out.println("4.포카리스웨트 1000");
-        System.out.println("5.조지아 1600");
-        System.out.println("---------------------------");
+        Logger logger = Logger.getLogger(SampleController.class.getName());
+
+        logger.log(Level.INFO,"---------------------------");
+        logger.log(Level.INFO,"1.콜라 1000");
+        logger.log(Level.INFO,"2.환타 1500");
+        logger.log(Level.INFO,"3.사이다 1300");
+        logger.log(Level.INFO,"4.포카리스웨트 1000");
+        logger.log(Level.INFO,"5.조지아 1600");
+        logger.log(Level.INFO,"---------------------------");
+
+
     }
 
     public static int calcTotalPrice(int price, int number){
