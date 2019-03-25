@@ -22,7 +22,7 @@ public class SampleController {
         return "Hello World! This is " + message ;
     }
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws Throwable {
         SpringApplication.run(SampleController.class, args);
         Logger logger = Logger.getLogger(SampleController.class.getName());
         Scanner in = new Scanner(System.in);
@@ -31,10 +31,7 @@ public class SampleController {
         // calcUserMoney method test
         int userMoney = 10000;
         int totalPrice = 0;
-//        int calcMoney = calcUserMoney(userMoney, totalPrice);
-//        System.out.println("userMoney: " + userMoney + ", totalPrice: " + totalPrice);
-//        System.out.println("after calculate");
-//        System.out.println("price: " + calcMoney);
+
         int button;
 
         logger.log(Level.INFO,"사용자가 가지고있는액수");
@@ -48,33 +45,27 @@ public class SampleController {
                 logger.log(Level.INFO,"액수가 부족합니다.");
                 end = true;
             }
-            if (button == 1) {
-                totalPrice += calcTotalPrice(1000, 1);
-                userMoney = calcUserMoney(userMoney, totalPrice);
-            }
-            else if (button == 2) {
-                totalPrice += calcTotalPrice(1500, 1);
-                userMoney = calcUserMoney(userMoney, totalPrice);
-            }
-            else if (button == 3) {
-                totalPrice += calcTotalPrice(1300, 1);
-                userMoney = calcUserMoney(userMoney, totalPrice);
-            }
-            else if (button == 4) {
-                totalPrice += calcTotalPrice(1000, 1);
-                userMoney = calcUserMoney(userMoney, totalPrice);
-            }
-            else if (button == 0) {
-                end = true;
+            switch(button) {
+                case 0:
 
-                logger.log(Level.INFO,"구매금액 : " + totalPrice + " 잔액 : " + userMoney);
+                    end = true;
 
-                logger.log(Level.INFO,"이용해주셔서 감사합니다.");
-            }
-            else {
-                logger.log(Level.INFO,"올바른 명령어를 입력하세요");
+                    logger.log(Level.INFO,"구매금액 : " + totalPrice + " 잔액 : " + userMoney);
 
+                    logger.log(Level.INFO,"이용해주셔서 감사합니다.");
+                case 1:
+                    totalPrice += calcTotalPrice(1000, 1);
+                case 2:
+                    totalPrice += calcTotalPrice(1500, 1);
+                case 3:
+                    totalPrice += calcTotalPrice(1300, 1);
+                case 4:
+                    totalPrice += calcTotalPrice(1000, 1);
+                default:
+
+                    logger.log(Level.INFO,"올바른 명령어를 입력하세요");
             }
+            userMoney = calcUserMoney(userMoney, totalPrice);
 
         }
 
