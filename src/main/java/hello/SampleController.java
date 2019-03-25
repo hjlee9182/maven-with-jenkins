@@ -61,7 +61,8 @@ public class SampleController {
                 end = true;
 
                logger.info("액수가 부족합니다.");
-               logger.info("구매금액 : " + totalPrice + " 잔액 : " + userMoney);
+
+
             } else {
                 logger.log(Level.INFO, "올바른 명령어를 입력하세요");
 
