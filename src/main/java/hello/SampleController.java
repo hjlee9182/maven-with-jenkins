@@ -6,10 +6,14 @@ import org.springframework.boot.autoconfigure.*;
 import org.springframework.stereotype.*;
 import org.springframework.web.bind.annotation.*;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 
 @Controller
 @EnableAutoConfiguration
 public class SampleController {
+
     @Value("${environment.message}")
     private String message;
 
@@ -21,7 +25,7 @@ public class SampleController {
 
     public static void main(String[] args) throws Throwable {
         SpringApplication.run(SampleController.class, args);
-
+        Logger logger = Logger.getLogger(SampleController.class.getName());
         Scanner in = new Scanner(System.in);
         boolean end = false;
 
@@ -30,44 +34,43 @@ public class SampleController {
         int totalPrice = 0;
 
         int button;
-        System.out.println("사용자가 가지고 있는 액수 : " + userMoney);
+
+        logger.log(Level.INFO, "사용자가 가지고있는액수");
 
         while (!end) {
             printMenu();
             button = in.nextInt();
             printMenu();
             if (userMoney < 0) {
-                System.out.println("액수가 부족합니다.");
+
+                logger.log(Level.INFO, "액수가 부족합니다.");
                 end = true;
             }
-            if (button == 1 || button == 4) {
+            if(button == 1 || button ==4) {
                 totalPrice += calcTotalPrice(1000, 1);
                 userMoney = calcUserMoney(userMoney, totalPrice);
             }
             else if (button == 2) {
                 totalPrice += calcTotalPrice(1500, 1);
                 userMoney = calcUserMoney(userMoney, totalPrice);
-            }
-            else if (button == 3) {
+            } else if (button == 3) {
                 totalPrice += calcTotalPrice(1300, 1);
                 userMoney = calcUserMoney(userMoney, totalPrice);
             }
-
             else if (button == 0) {
                 end = true;
-                System.out.println("구매금액 : " + totalPrice + " 잔액 : " + userMoney);
-                System.out.println("이용해주셔서 감사합니다.");
+                logger.info(String.format("구매금액 : %d 잔액 :%d",totalPrice, userMoney));
+                logger.info("이용해 주셔서 감사합니다.");
+
+
+            } else {
+                logger.log(Level.INFO, "올바른 명령어를 입력하세요");
+
             }
-            else {
-                System.out.println("올바른 명령어를 입력하세요");
-            }
+
 
         }
-
-
-
     }
-
     /*
      * calculate userMoney and totalPrice Method
      * if userMoney bigger than totalPrice, return positive numbers
@@ -79,13 +82,17 @@ public class SampleController {
     }
 
     private static void printMenu(){
-        System.out.println("---------------------------");
-        System.out.println("1.콜라 1000");
-        System.out.println("2.환타 1500");
-        System.out.println("3.사이다 1300");
-        System.out.println("4.포카리스웨트 1000");
-        System.out.println("5.조지아 1600");
-        System.out.println("---------------------------");
+        Logger logger = Logger.getLogger(SampleController.class.getName());
+
+        logger.log(Level.INFO,"---------------------------");
+        logger.log(Level.INFO,"1.콜라 1000");
+        logger.log(Level.INFO,"2.환타 1500");
+        logger.log(Level.INFO,"3.사이다 1300");
+        logger.log(Level.INFO,"4.포카리스웨트 1000");
+        logger.log(Level.INFO,"5.조지아 1600");
+        logger.log(Level.INFO,"---------------------------");
+
+
     }
 
     public static int calcTotalPrice(int price, int number){
